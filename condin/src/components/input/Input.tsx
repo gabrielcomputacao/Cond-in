@@ -1,4 +1,5 @@
 
+import React from "react"
 import styles from "./Input.module.css"
 
 type InputProps={
@@ -7,8 +8,8 @@ type InputProps={
 }
 
 
-export default function Input(props: InputProps){
+export default function Input(props: InputProps | any){
     return (
-        <input className={styles.input} type={props.tipo} placeholder={props.place}/>
+        <input className={styles.input} type={props.tipo} placeholder={props.place} {...props}/>
     )
 }

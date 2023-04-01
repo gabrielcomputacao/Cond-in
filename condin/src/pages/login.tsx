@@ -8,7 +8,7 @@ export default function Login() {
   return (
     <div className={styles.background}>
       <LoginCard title="Crie sua Conta">
-        <form className={styles.form} action="">
+        <form className={styles.form} >
 
           <Input place="Digite seu Email" tipo="email" />
           <Input place="Digite sua Senha" tipo="password" />

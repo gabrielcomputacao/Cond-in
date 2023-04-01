@@ -1,4 +1,6 @@
 
+import jwt, {GetPublicKeyOrSecret, Secret} from "jsonwebtoken";
+
 let users: Array<dadosUser> = [];
 
 export type dadosUser = {
@@ -6,6 +8,32 @@ export type dadosUser = {
     email: string,
     password: string,
 }
+
+const SECRET: Secret | undefined  = process.env.JWT_SECRET;
+
+function createToken(user: dadosUser){
+    if(SECRET){
+        return jwt.sign({email: user.email , nome: user.nome, password: user.password}, SECRET)
+
+    }
+}
+
+
+function readToken(token: string){
+    try {
+
+        if(SECRET !== undefined){
+
+            return jwt.verify(token, SECRET)
+        }
+
+    } catch (error) {
+        if(error instanceof Error){
+            throw new Error('Token Inválido')
+        }
+    }
+}
+
 
 
 export function cadastro(body:dadosUser){
@@ -16,7 +44,9 @@ export function cadastro(body:dadosUser){
     if(user) throw new Error('Usuário já cadastrado');
 
     users.push(body);
-    return body;
+    
+    const token = createToken(body)
+    return token
 
 }
 
@@ -25,7 +55,8 @@ export function login(body:dadosUser){
     if(!user) throw new Error('Não existe usuário');
     if(user.password !== body.password) throw new Error('Senha Incorreta')
 
-    return user;
+    const token = createToken(body)
+    return token
 
 }
 
