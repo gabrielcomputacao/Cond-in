@@ -11,13 +11,7 @@
 }
 
 
-.controlPanel{
-    width: 5%;
-    background-color: #292929;
-    color: #fff;
-    min-height: 100vh;
-    align-self: flex-start;
-}
+
 
 .mainContent{
     width: 95%;
