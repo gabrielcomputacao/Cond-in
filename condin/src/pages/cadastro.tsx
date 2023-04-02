@@ -4,8 +4,14 @@ import styles from "../styles/Login.module.css";
 import Button from "@/components/button/Button";
 import Link from "next/link";
 import { ChangeEvent, HtmlHTMLAttributes, SyntheticEvent, useState } from "react";
+/* biblioteca para armazenar nos cookies do navegador */
+import { setCookie } from "cookies-next";
+/* biblioteca para redirecionamento de pagina */
+import { useRouter } from "next/router";
 
 export default function Cadastro() {
+
+  const router = useRouter()
 
   const [formData, setFormData] = useState({
     nome: '',
@@ -20,11 +26,28 @@ export default function Cadastro() {
       })
   }
 
-  const handleFormSubmit = (event: SyntheticEvent)=>{
+  const handleFormSubmit = async (event: SyntheticEvent)=>{
     try {
       event.preventDefault()
-    } catch (error) {
+      const response = await fetch('./api/user/cadastro', {
+          method: 'POST',
+          body: JSON.stringify(formData)
+      })
+
+      const json = await response.json()
       
+      if (response.status !== 201) throw new Error(json)
+
+      setCookie('authorization',json)
+      router.push('/')
+
+    } catch (error) {
+
+      if(error instanceof Error){
+        console.log(error.message)
+      }
+
+
     }
 
 

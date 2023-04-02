@@ -34,6 +34,10 @@ function readToken(token: string){
     }
 }
 
+export function verificaToken(token: string){
+    return readToken(token)
+}
+
 
 
 export function cadastro(body:dadosUser){
