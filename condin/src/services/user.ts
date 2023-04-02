@@ -1,5 +1,5 @@
 
-import jwt, {GetPublicKeyOrSecret, Secret} from "jsonwebtoken";
+import jwt, { Secret} from "jsonwebtoken";
 
 let users: Array<dadosUser> = [];
 

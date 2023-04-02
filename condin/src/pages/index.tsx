@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { getCookie } from "cookies-next"
 import { GetServerSideProps, GetServerSidePropsContext } from 'next'
 import { verificaToken } from '@/services/user'
+import styles from "../styles/Home.module.css"
+import PanelControl from '@/components/panelcontrol/panelControl'
 
 export default function Home() {
   return (
@@ -12,10 +14,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main >
-          <p>
-            Perfil
-          </p>
+      <main className={styles.main}>
+          <div className={styles.controlPanel}>
+              <PanelControl />
+          </div>
+          <div className={styles.mainContent}>
+
+          </div>
+          
       </main>
     </>
   )
