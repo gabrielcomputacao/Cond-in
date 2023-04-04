@@ -1,8 +1,12 @@
 import React from "react";
-import Button from "../button/Button";
 
-interface listaNavegacaoProps  {
-  childrens: React.ReactNode[];
+
+export interface listaNavegacaoProps  {
+  childrens: {
+    caminho: string,
+    pagina: string,
+  }[],
+  
 };
 
 
@@ -14,7 +18,10 @@ export default function ListaNavegacao({childrens}: listaNavegacaoProps) {
            { 
             childrens.map((item, index)=>
                 (
-                    <li key={index}>{item}</li>
+                    
+                         <li key={index}>{item.pagina}</li>
+                    
+                    
                 )
             ) 
            }

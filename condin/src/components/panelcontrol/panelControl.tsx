@@ -6,16 +6,16 @@ import { ListaComponents } from "../listaNavegacao/listaComponents";
 
 
 export default function PanelControl() {
-  const [largura, setLargura] = useState(7);
+  const [largura, setLargura] = useState(100);
   const handleLarguraNavegacao = () => {
-    if (largura === 7) {
-      setLargura(20);
+    if (largura === 100) {
+      setLargura(300);
     } else {
-      setLargura(7);
+      setLargura(100);
     }
   };
   const styleLargura = {
-    width: `${largura}%`,
+    width: `${largura}px`,
   };
 
   
